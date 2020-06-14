@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'user'], function (){
+    Route::post('create', 'UserController@register')->withoutMiddleware('jwt-auth');
+    Route::post('login', 'UserController@login')->withoutMiddleware('jwt-auth');
+    Route::put('update', 'UserController@update');
+});

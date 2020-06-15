@@ -30,3 +30,9 @@ Route::group(['prefix' => 'user'], function (){
 
 //RUTAS DE LAS CATEGORIAS POR RESOURCE
 Route::resource('/category', 'CategoryController');
+
+//RUTAS DE LOS POTS POR RESOURCE Y NORMALES
+Route::resource('/post', 'PostController');
+Route::get('/post/get-image/{file}', 'PostController@getImage');
+Route::get('/post/get-post-category/{id}', 'PostController@getPostByCategory');
+Route::get('/post/get-post-user/{id}', 'PostController@getPostByUser');

@@ -104,7 +104,7 @@ class UserController extends Controller
 
     //TRAER INFORMACION DE UN USUARIO
     public function getUser($id){
-        $user = User::find($id);
+        $user = User::find($id)->load('role');
         if(!is_null($user)){
             $data = ['code' => '200', 'user' => $user];
         }else{

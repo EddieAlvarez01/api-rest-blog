@@ -89,4 +89,28 @@ class UserController extends Controller
         return response()->json(['message' => 'Usuario actualizado exitosamente', 'user' => $user], 200);
     }
 
+    //TRAER IMAGENES DE LOS USUARIOS
+    public function getImage(Request $req){
+        $jwt = new JwtAuth();
+        $auth = $jwt->checkToken($req->header('Authorization'), true);
+        if($auth->image != ''){
+            $file = Storage::disk('users')->get($auth->image);
+        }else{
+            //IMAGEN POR DEFECTO
+            $file = 'imagen por defecto';
+        }
+        return response($file, 200);
+    }
+
+    //TRAER INFORMACION DE UN USUARIO
+    public function getUser($id){
+        $user = User::find($id);
+        if(!is_null($user)){
+            $data = ['code' => '200', 'user' => $user];
+        }else{
+            $data = ['code' => '404', 'message' => 'No se encontro el usuario solicitado'];
+        }
+        return response()->json($data, $data['code']);
+    }
+
 }

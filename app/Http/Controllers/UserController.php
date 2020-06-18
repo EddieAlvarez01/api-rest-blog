@@ -54,8 +54,7 @@ class UserController extends Controller
         $data = $jwtAuth->signup($req->input('email'), $req->input('password'));
         if(!is_null($data)){
             $user = $jwtAuth->checkToken($data['data'], true);
-            $user->token = $data['data'];
-            return response()->json(['user' => $user], 200);
+            return response()->json(['user' => $user, 'auth' => ['token' => $data['data'], 'exp' => $user->exp]], 200);
         }
         return response()->json([
             'message' => 'Error en los credenciales'

@@ -22,7 +22,7 @@ Route::group(['prefix' => 'user'], function (){
     Route::post('create', 'UserController@register')->withoutMiddleware('jwt-auth');
     Route::post('login', 'UserController@login')->withoutMiddleware('jwt-auth');
     Route::put('update', 'UserController@update');
-    Route::get('get-image', 'UserController@getImage');
+    Route::get('get-image', 'UserController@getImage')->withoutMiddleware('jwt-auth');
     Route::get('get-user/{id}', 'UserController@getUser')->where([
         'id' => '[0-9]+'
     ])->withoutMiddleware('jwt-auth');

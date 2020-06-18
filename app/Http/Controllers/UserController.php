@@ -91,14 +91,12 @@ class UserController extends Controller
     }
 
     //TRAER IMAGENES DE LOS USUARIOS
-    public function getImage(Request $req){
-        $jwt = new JwtAuth();
-        $auth = $jwt->checkToken($req->header('Authorization'), true);
-        if($auth->image != ''){
-            $file = Storage::disk('users')->get($auth->image);
+    public function getImage($filename){
+        if($filename != ''){
+            $file = Storage::disk('users')->get($filename);
         }else{
             //IMAGEN POR DEFECTO
-            $file = 'imagen por defecto';
+            $file = Storage::disk('users')->get('users.svg');
         }
         return response($file, 200);
     }

@@ -71,10 +71,10 @@ class UserController extends Controller
             'surname' => ['required', 'string', 'max:200'],
             'email' => ['required', 'string', 'email', 'max:300', 'unique:App\User,email,' . $auth->sub],
             'description' => ['string'],
-            'file0' => ['image']
+            'image' => ['image']
         ]);
         $user = User::find($auth->sub);
-        $file = $req->file('file0');
+        $file = $req->file('image');
         if($file){        //VERIFICAMOS QUE EL USUARIO HAYA CARGADO UNA IMAGEN PARA SUBIRLA
             $imageSplit = Storage::putFile('users', $file, 'public');       //SUBE LA IMAGEN DENTRO DE LA CARPETA USERS Y DEVUELDE UN ID UNICO
             if($user->image != ''){         //VERIFICAR SI EL USUARIO TINE UNA IMAGEN SUBIDA PARA BORRAR LA VIEJA

@@ -39,12 +39,12 @@ class PostController extends Controller
             'category_id' => 'required|numeric',
             'title' => 'required|string|max:300',
             'content' => 'required|string',
-            'file0' => 'image'
+            'image' => 'image'
         ]);
         $post = new Post();
         $jwt = new JwtAuth();
         $auth = $jwt->checkToken($req->header('Authorization'), true);      //SE TRAEN LOS DATOS DEL USUARIO POR MEDIO DEL TOKEN
-        $img = $req->file('file0');
+        $img = $req->file('image');
         if($img){       //SI TRAE IMAGEN
             $image_path = Storage::putFile('images', $img, 'public');       //SUBE LA IMAGEN DEVOLVIENDO UN ID UNICO
             $image_path = explode('/', $image_path);            //SPLIT PARA SACAR EL NOMBRE DE LA IMAGEN
@@ -77,9 +77,9 @@ class PostController extends Controller
                     'category_id' => 'required|numeric',
                     'title' => 'required|string|max:300',
                     'content' => 'required|string',
-                    'file0' => 'image'
+                    'image' => 'image'
                 ]);
-                $img = $req->file('file0');
+                $img = $req->file('image');
                 if($img){       //SI TRAE IMAGEN
                     if($post->image != ''){     //SI YA TENIA LA IMAGEN EL POST
                         Storage::disk('images')->delete($post->image);

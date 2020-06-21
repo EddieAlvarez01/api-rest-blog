@@ -92,12 +92,12 @@ class UserController extends Controller
     }
 
     //TRAER IMAGENES DE LOS USUARIOS
-    public function getImage($filename){
+    public function getImage($filename = ''){
         if($filename != ''){
             $file = Storage::disk('users')->get($filename);
         }else{
             //IMAGEN POR DEFECTO
-            $file = Storage::disk('users')->get('users.svg');
+            $file = Storage::disk('users')->get('user.svg');
         }
         return response($file, 200);
     }

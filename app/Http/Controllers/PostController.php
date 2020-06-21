@@ -126,7 +126,7 @@ class PostController extends Controller
     }
 
     //SACAR LAS IMAGENES DE LOS POST
-    public function getImage($filename){
+    public function getImage($filename = ''){
         if($filename != ''){
             if(Storage::disk('images')->exists($filename)){
                 return response(Storage::disk('images')->get($filename), 200);

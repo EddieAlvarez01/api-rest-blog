@@ -133,7 +133,7 @@ class PostController extends Controller
             }
             return response(['code' => 404, 'message' => 'No existe la imagen'], 404);
         }
-        return response(Storage::disk('images')->get('default-post.svg'), 200);
+        return response(Storage::disk('images')->get('default-post.jpg'), 200);
     }
 
     //POST POR CATEGORIA

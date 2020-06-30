@@ -7,4 +7,4 @@ _Pequeño proyecto personal, para practicar api's con laravel_
 * PHP - Lenguaje Backend
 * Laravel - Framework de php
 * [PHP-JWT](https://packagist.org/packages/firebase/php-jwt) - Autenticación con JWT
-
+* MySQL - Base de datos
